@@ -21,8 +21,6 @@ Gem::Specification.new do |s|
   s.files = [
     ".ruby-gemset",
     ".ruby-version",
-    "Gemfile",
-    "Gemfile.lock",
     "LICENSE",
     "README.rdoc",
     "Rakefile",
