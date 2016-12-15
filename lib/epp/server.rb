@@ -40,9 +40,9 @@ module Epp #:nodoc:
       xml = Document.new
       xml.root = Node.new("epp")
 
-      xml.root["xmlns"] = "urn:ietf:params:xml:ns:epp-1.0"
+      xml.root["xmlns"] = "https://epp.tld.ee/schema/epp-ee-1.0.xsd"
       xml.root["xmlns:xsi"] = "http://www.w3.org/2001/XMLSchema-instance"
-      xml.root["xsi:schemaLocation"] = "urn:ietf:params:xml:ns:epp-1.0 epp-1.0.xsd"
+      xml.root["xsi:schemaLocation"] = "lib/schemas/epp-ee-1.0.xsd"
 
       return xml
     end
