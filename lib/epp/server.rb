@@ -3,7 +3,7 @@ module Epp #:nodoc:
     include LibXML::XML
     include RequiresParameters
 
-    attr_accessor :tag, :password, :server, :port, :lang, :services, :extensions, :version, :key, :cert
+    attr_accessor :tag, :password, :server, :port, :lang, :services, :extensions, :version, :key, :cert, :namespace
 
 
     # ==== Required Attrbiutes
@@ -32,7 +32,7 @@ module Epp #:nodoc:
       @version    = attributes[:version]    || "1.0"
       @cert       = attributes[:cert]       || nil
       @key        = attributes[:key]        || nil
-
+      @namespace = attributes[:namespace]   || "urn:ietf:params:xml:ns:epp-1.0"
       @logged_in  = false
     end
 
@@ -40,9 +40,11 @@ module Epp #:nodoc:
       xml = Document.new
       xml.root = Node.new("epp")
 
-      xml.root["xmlns"] = "https://epp.tld.ee/schema/epp-ee-1.0.xsd"
-      xml.root["xmlns:xsi"] = "http://www.w3.org/2001/XMLSchema-instance"
-      xml.root["xsi:schemaLocation"] = "lib/schemas/epp-ee-1.0.xsd"
+      xml.root["xmlns"] = @namespace
+      
+      # these are commented out as metaregistrar doesn't support them
+      # xml.root["xmlns:xsi"] = "http://www.w3.org/2001/XMLSchema-instance"
+      # xml.root["xsi:schemaLocation"] = "lib/schemas/epp-ee-1.0.xsd"
 
       return xml
     end
@@ -87,7 +89,6 @@ module Epp #:nodoc:
       @socket = OpenSSL::SSL::SSLSocket.new(@connection, @context) if @connection
       @socket.sync_close = true
       @socket.connect
-
       get_frame
     end
 
@@ -197,7 +198,6 @@ module Epp #:nodoc:
         return true
       else
         result_message  = (response/"epp"/"response"/"result"/"msg").text.strip
-
         raise EppErrorResponse.new(:xml => response, :code => result_code, :message => result_message)
       end
     end
