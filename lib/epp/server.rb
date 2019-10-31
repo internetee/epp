@@ -167,7 +167,7 @@ module Epp #:nodoc:
         extensions_container << Node.new("extURI", uri)
       end
 
-      command << Node.new("clTRID", UUIDTools::UUID.timestamp_create.to_s)
+      command << Node.new("clTRID", SecureRandom.uuid)
 
       response = Hpricot::XML(send_request(xml.to_s))
 
@@ -183,7 +183,7 @@ module Epp #:nodoc:
       xml.root << command = Node.new("command")
 
       command << login = Node.new("logout")
-      command << Node.new("clTRID", UUIDTools::UUID.timestamp_create.to_s)
+      command << Node.new("clTRID", SecureRandom.uuid)
 
       response = Hpricot::XML(send_request(xml.to_s))
 

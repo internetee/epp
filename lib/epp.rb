@@ -3,7 +3,7 @@ require 'rubygems'
 require 'openssl'
 require 'libxml'
 require 'hpricot'
-require 'uuidtools'
+require 'securerandom'
 
 # Package files
 require File.dirname(__FILE__) + '/require_parameters.rb'
