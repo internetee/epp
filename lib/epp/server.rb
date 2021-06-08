@@ -27,7 +27,7 @@ module Epp #:nodoc:
       @server     = attributes[:server]
       @port       = attributes[:port]       || 700
       @lang       = attributes[:lang]       || "en"
-      @services   = attributes[:services]   || ["urn:ietf:params:xml:ns:domain-1.0", "urn:ietf:params:xml:ns:contact-1.0", "urn:ietf:params:xml:ns:host-1.0"]
+      @services   = attributes[:services]   || ["urn:ietf:params:xml:ns:domain-1.1", "urn:ietf:params:xml:ns:contact-1.0", "urn:ietf:params:xml:ns:host-1.0"]
       @extensions = attributes[:extensions] || []
       @version    = attributes[:version]    || "1.0"
       @cert       = attributes[:cert]       || nil
@@ -157,7 +157,7 @@ module Epp #:nodoc:
 
       login << services = Node.new("svcs")
 
-      services << Node.new("objURI", "urn:ietf:params:xml:ns:domain-1.0")
+      services << Node.new("objURI", "urn:ietf:params:xml:ns:domain-1.1")
       services << Node.new("objURI", "urn:ietf:params:xml:ns:contact-1.0")
       services << Node.new("objURI", "urn:ietf:params:xml:ns:host-1.0")
 
