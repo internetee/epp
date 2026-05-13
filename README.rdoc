@@ -42,7 +42,7 @@ You would then make an XML request to the server.
     xml       = "<?xml ... </epp>"
     response  = server.request(xml)
   
-You can build this however you'd like, although we prefer Hpricot. The process is as follows:
+You can build request XML however you'd like; outgoing frames use libxml-ruby, and login/logout responses are parsed with Nokogiri. The process is as follows:
 
 * Connect to EPP server and receive the <greeting> frame
 * Send a standard <login> request
@@ -53,6 +53,30 @@ You can build this however you'd like, although we prefer Hpricot. The process i
 The EPP module would then return the XML response as a string. In this example, the response XML would be set equal to <tt>response</tt> for your usage.
 
 Once the request is complete, it will automatically close the connection. For simplicity purposes, this plug-in will *not* use a persistent connection to the EPP server. This may change in future releases, as some registries require that persistent connections be supported. Please feel free to email me to collaborate on making this possible.
+
+== Running tests
+
+=== With Docker
+
+From this gem's directory (the one that contains the +Dockerfile+):
+
+    $ docker build -t epp-gem .
+    $ docker run --rm epp-gem
+
+The image uses Ruby 3.0.3 (same as the registry app), installs XML development headers for +libxml-ruby+, runs +bundle install+, then +bundle exec rake test+.
+
+To re-run tests after changing only Ruby sources (reuse gems from the image):
+
+    $ docker run --rm -v "$PWD":/gem -w /gem epp-gem bundle exec rake test
+
+Rebuild the image when +Gemfile+, +epp.gemspec+, or Ruby version changes.
+
+=== With Bundler locally
+
+Install XML build prerequisites for +libxml-ruby+ (e.g. +libxml2-dev+ and +libxslt1-dev+ on Debian), then:
+
+    $ bundle install
+    $ bundle exec rake test
 
 == Bugs/Issues
 

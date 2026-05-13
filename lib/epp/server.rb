@@ -169,7 +169,7 @@ module Epp #:nodoc:
 
       command << Node.new("clTRID", SecureRandom.uuid)
 
-      response = Hpricot::XML(send_request(xml.to_s))
+      response = Nokogiri::XML(send_request(xml.to_s))
 
       handle_response(response)
     end
@@ -185,18 +185,22 @@ module Epp #:nodoc:
       command << login = Node.new("logout")
       command << Node.new("clTRID", SecureRandom.uuid)
 
-      response = Hpricot::XML(send_request(xml.to_s))
+      response = Nokogiri::XML(send_request(xml.to_s))
 
       handle_response(response, 1500)
     end
 
     def handle_response(response, acceptable_response = 1000)
-      result_code = (response/"epp"/"response"/"result").attr("code").to_i
+      result_el = response.at_xpath(
+        '//*[local-name()="epp"]/*[local-name()="response"]/*[local-name()="result"]'
+      )
+      result_code = result_el['code'].to_i
 
       if result_code == acceptable_response
         return true
       else
-        result_message  = (response/"epp"/"response"/"result"/"msg").text.strip
+        msg_el = result_el.at_xpath('./*[local-name()="msg"]')
+        result_message = msg_el&.text&.strip.to_s
 
         raise EppErrorResponse.new(:xml => response, :code => result_code, :message => result_message)
       end

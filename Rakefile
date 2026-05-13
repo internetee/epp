@@ -15,7 +15,7 @@ begin
     # Dependencies
     gem.add_development_dependency "shoulda"
     gem.add_development_dependency "mocha"
-    gem.add_dependency "hpricot"
+    gem.add_dependency "nokogiri"
     gem.add_dependency "libxml-ruby"
   end
 rescue LoadError
