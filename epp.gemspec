@@ -11,10 +11,10 @@ Gem::Specification.new do |s|
   s.required_ruby_version = ">= 3.0.0"
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.require_paths = ["lib"]
-  s.authors = ["Josh Delsman"]
+  s.authors = ["Josh Delsman", "Sergei Tsõganov"]
   s.date = "2014-12-08"
-  s.description = "Basic functionality for connecting and making requests on EPP (Extensible Provisioning Protocol) servers"
-  s.email = "jdelsman@ultraspeed.com"
+  s.description = "Ruby client for EPP (Extensible Provisioning Protocol, RFC 5730): framed XML over TLS, with libxml-ruby for requests and Nokogiri for responses."
+  s.email = ["jdelsman@ultraspeed.com", "sergei.tsoganov@internet.ee"]
   s.extra_rdoc_files = [
     "LICENSE",
     "README.rdoc"
@@ -47,9 +47,16 @@ Gem::Specification.new do |s|
     "test/xml/test_request.xml",
     "test/xml/test_response.xml"
   ]
-  s.homepage = "http://github.com/ultraspeed/epp"
+  s.homepage = "https://github.com/internetee/epp"
+  s.metadata = {
+    "bug_tracker_uri" => "https://github.com/internetee/epp/issues",
+    "changelog_uri" => "https://github.com/internetee/epp/blob/master/CHANGELOG.md",
+    "documentation_uri" => "https://github.com/internetee/epp/blob/master/README.rdoc",
+    "homepage_uri" => "https://github.com/internetee/epp",
+    "source_code_uri" => "https://github.com/internetee/epp"
+  }
   s.rubygems_version = "2.2.2"
-  s.summary = "EPP (Extensible Provisioning Protocol) for Ruby"
+  s.summary = "Ruby client for EPP (Extensible Provisioning Protocol) over TLS"
 
   if s.respond_to? :specification_version then
     s.specification_version = 4

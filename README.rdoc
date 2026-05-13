@@ -1,4 +1,6 @@
-= EPP v1.3.1 (by {Ultraspeed}[http://ultraspeed.co.uk])
+= EPP gem
+
+Originally *EPP v1.3.1* by {Ultraspeed}[http://ultraspeed.co.uk]. This fork is maintained by {Estonian Internet (.ee)}[https://internet.ee] (Sergei Tsõganov, +sergei.tsoganov@internet.ee+). Current release: see +VERSION+ or RubyGems.
 
 The EPP gem provides basic functionality for connecting and making requests on EPP (Extensible Provisioning Protocol) servers. It has been fully tested against the RFC 5730 & 5734 specification.
 
@@ -52,7 +54,7 @@ You can build request XML however you'd like; outgoing frames use libxml-ruby, a
 
 The EPP module would then return the XML response as a string. In this example, the response XML would be set equal to <tt>response</tt> for your usage.
 
-Once the request is complete, it will automatically close the connection. For simplicity purposes, this plug-in will *not* use a persistent connection to the EPP server. This may change in future releases, as some registries require that persistent connections be supported. Please feel free to email me to collaborate on making this possible.
+Once the request is complete, it will automatically close the connection. For simplicity purposes, this plug-in will *not* use a persistent connection to the EPP server. This may change in future releases, as some registries require that persistent connections be supported. Please open a GitHub issue if you want to collaborate on that.
 
 == Running tests
 
@@ -82,12 +84,13 @@ Install XML build prerequisites for +libxml-ruby+ (e.g. +libxml2-dev+ and +libxs
 
 Please report all issues using the GitHub issue tracker at:
 
-http://github.com/ultraspeed/epp/issues
+https://github.com/internetee/epp/issues
 
 == Credit
 
-Author: Josh Delsman (http://twitter.com/voxxit)
-Inspired from: http://labs.centralnic.com/Net_EPP_Client.php
+* Original author: Josh Delsman (http://twitter.com/voxxit), {Ultraspeed}[http://ultraspeed.co.uk]
+* Current maintainer (this fork): Sergei Tsõganov, {Estonian Internet (.ee)}[https://internet.ee] — sergei.tsoganov@internet.ee
+* Inspired from: http://labs.centralnic.com/Net_EPP_Client.php
 
 == License
 

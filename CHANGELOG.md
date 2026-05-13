@@ -4,6 +4,8 @@
 * Added a root `Gemfile` using `gemspec` for Bundler-based local development.
 * Added a `Dockerfile` for running the test suite without a local Ruby/XML toolchain; documented usage in README.
 * Added Rake to the `Gemfile` and adjusted the Mocha test helper for current Mocha (`mocha/minitest` with legacy fallback).
+* Pointed homepage and RubyGems `metadata` at `github.com/internetee/epp`; added `.github/REPOSITORY_DESCRIPTION.txt` as the suggested GitHub “About” blurb.
+* README, LICENSE, and gemspec: credit Estonian Internet (.ee) maintenance (Sergei Tsõganov) alongside original Ultraspeed authorship.
 
 191031
 * Replaced uuidtools gem with securerandom [#5](https://github.com/internetee/epp/pull/5)
