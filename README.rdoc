@@ -20,9 +20,6 @@ Then, you can require it in your Ruby/Rails app:
     require "epp"
     
 If you're using Rails, configure your gem in the following file:
-
-    # Rails 2.x - config/environment.rb
-    config.gem "epp"
     
     # Rails 3 - Gemfile
     gem "epp"
