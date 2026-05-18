@@ -1,6 +1,6 @@
 = EPP gem
 
-Originally *EPP v1.3.1* by {Ultraspeed}[http://ultraspeed.co.uk]. This fork is maintained by {Estonian Internet (.ee)}[https://internet.ee] (Sergei Tsõganov, +sergei.tsoganov@internet.ee+). Current release: see +VERSION+ or RubyGems.
+Originally *EPP v1.3.1* by {Ultraspeed}[http://ultraspeed.co.uk]. This fork is maintained by {Estonian Internet (.ee)}[https://internet.ee]. Current release: see +VERSION+ or RubyGems.
 
 The EPP gem provides basic functionality for connecting and making requests on EPP (Extensible Provisioning Protocol) servers. It has been fully tested against the RFC 5730 & 5734 specification.
 
