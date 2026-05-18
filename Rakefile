@@ -6,16 +6,16 @@ begin
 
   Jeweler::Tasks.new do |gem|
     gem.name = "epp"
-    gem.summary = "EPP (Extensible Provisioning Protocol) for Ruby"
-    gem.description = "Basic functionality for connecting and making requests on EPP (Extensible Provisioning Protocol) servers"
-    gem.email = "jdelsman@ultraspeed.com"
-    gem.homepage = "http://github.com/ultraspeed/epp"
-    gem.authors = ["Josh Delsman"]
+    gem.summary = "Ruby client for EPP (Extensible Provisioning Protocol) over TLS"
+    gem.description = "Ruby client for EPP (Extensible Provisioning Protocol, RFC 5730): framed XML over TLS, with libxml-ruby for requests and Nokogiri for responses."
+    gem.email = ["jdelsman@ultraspeed.com", "sergei.tsoganov@internet.ee"]
+    gem.homepage = "https://github.com/internetee/epp"
+    gem.authors = ["Josh Delsman", "Sergei Tsõganov"]
 
     # Dependencies
     gem.add_development_dependency "shoulda"
     gem.add_development_dependency "mocha"
-    gem.add_dependency "hpricot"
+    gem.add_dependency "nokogiri"
     gem.add_dependency "libxml-ruby"
   end
 rescue LoadError

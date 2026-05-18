@@ -2,7 +2,7 @@
 require 'rubygems'
 require 'openssl'
 require 'libxml'
-require 'hpricot'
+require 'nokogiri'
 require 'securerandom'
 
 # Package files
