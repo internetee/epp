@@ -78,19 +78,42 @@ module Epp #:nodoc:
 		# established, then this method will call get_frame and return
 		# the EPP <tt><greeting></tt> frame which is sent by the
 		# server upon connection.
+    # def open_connection
+    #   @connection = TCPSocket.new(server, port)
+    #   @context = OpenSSL::SSL::SSLContext.new
+    #   @context.cert = @cert
+    #   @context.key = @key
+
+    #   @socket = OpenSSL::SSL::SSLSocket.new(@connection, @context) if @connection
+    #   @socket.sync_close = true
+    #   @socket.connect
+
+    #   get_frame
+    # end
     def open_connection
       @connection = TCPSocket.new(server, port)
-      @context = OpenSSL::SSL::SSLContext.new
-      @context.cert = @cert
-      @context.key = @key
 
-      @socket = OpenSSL::SSL::SSLSocket.new(@connection, @context) if @connection
-      @socket.sync_close = true
-      @socket.connect
+      puts "@connection #{@connection}"
+      puts "@cert #{@cert}"
+      puts "@key #{@key}"
+
+      if @cert && @key
+        @context = OpenSSL::SSL::SSLContext.new
+        @context.cert = @cert
+        @context.key = @key
+
+        @socket = OpenSSL::SSL::SSLSocket.new(@connection, @context)
+        @socket.sync_close = true
+        @socket.connect
+      else
+        @socket = @connection
+      end
+
+      puts "@@socket  #{@socket }"
 
       get_frame
     end
-
+    
     # Closes the connection to the EPP server.
     def close_connection
       @socket.close     if @socket and not @socket.closed?
@@ -106,13 +129,25 @@ module Epp #:nodoc:
     # the connection is broken, a SocketError will be raised. Otherwise,
     # it will return a string containing the XML from the server.
     def get_frame
+      puts "@socket get frame"
+      puts @socket
+      puts @socket.eof?
+      puts '===='
       raise SocketError.new("Connection closed by remote server") if !@socket or @socket.eof?
 
       header = @socket.read(4)
 
+      puts "headers"
+      puts header
+      puts "---------"
+
       raise SocketError.new("Error reading frame from remote server") if header.nil?
 
       length = header_size(header)
+
+      puts "length"
+      puts length
+      puts '========='
 
       raise SocketError.new("Got bad frame header length of #{length} bytes from the server") if length < 5
 
